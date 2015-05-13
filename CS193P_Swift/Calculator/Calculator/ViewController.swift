@@ -23,6 +23,19 @@ class ViewController: UIViewController
             userIsInTheMiddleOfTypingANumber = true
         }
     }
+
+    @IBAction func addConstant(sender: UIButton) {
+        let constant = sender.currentTitle!
+        switch constant {
+        case "π": getConstant(M_PI)
+        default: break
+        }
+    }
+    
+    func getConstant(constant: Double) {
+        displayValue = constant
+        enter()
+    }
     
     @IBAction func operate(sender: UIButton) {
         let operation = sender.currentTitle!
@@ -32,6 +45,8 @@ class ViewController: UIViewController
         case "+": performOperation { $0 + $1 }
         case "−": performOperation { $1 - $0 }
         case "√": performOperation1 { sqrt($0) }
+        case "sin": performOperation1 { sin($0) }
+        case "cos": performOperation1 { cos($0) }
         default: break
         }
     }
