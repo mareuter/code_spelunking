@@ -85,5 +85,11 @@ class ViewController: UIViewController
             userIsInTheMiddleOfTypingANumber = false
         }
     }
+    
+    @IBAction func clear() {
+        display.text = "0"
+        operandStack.removeAll(keepCapacity: false)
+        println("operandStack = \(operandStack)")
+    }
 }
 
