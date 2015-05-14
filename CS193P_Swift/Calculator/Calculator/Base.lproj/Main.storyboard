@@ -167,7 +167,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="enter" destination="BYZ-38-t0r" eventType="touchUpInside" id="zB3-g4-WT2"/>
+                                    <action selector="enter" destination="BYZ-38-t0r" eventType="touchUpInside" id="9bg-Gw-bro"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SFK-IW-s4V">
@@ -244,6 +244,12 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to your Calculator" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dw7-K1-jNl">
+                                <rect key="frame" x="16" y="546" width="568" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTi-aU-fJl">
                                 <rect key="frame" x="206" y="181" width="30" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -255,12 +261,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NDQ-mJ-vAc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="2Ug-st-yTQ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dw7-K1-jNl" secondAttribute="bottom" constant="20" id="IGN-7E-7GT"/>
+                            <constraint firstItem="dw7-K1-jNl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="QdB-Tx-tj7"/>
+                            <constraint firstItem="dw7-K1-jNl" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Teq-vc-n02"/>
                             <constraint firstItem="NDQ-mJ-vAc" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="bbz-mS-0LP"/>
                             <constraint firstItem="NDQ-mJ-vAc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="mQp-cl-hpp"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="display" destination="NDQ-mJ-vAc" id="gT8-As-doe"/>
+                        <outlet property="history" destination="dw7-K1-jNl" id="fW0-em-lxz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

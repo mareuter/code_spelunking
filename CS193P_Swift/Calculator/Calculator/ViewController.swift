@@ -11,8 +11,11 @@ import UIKit
 class ViewController: UIViewController
 {
     @IBOutlet weak var display: UILabel!
+    @IBOutlet weak var history: UILabel!
     
+    let historyGreeting = "Welcome to your Calculator"
     var userIsInTheMiddleOfTypingANumber = false
+    var userPerformedOperation = false
 
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
@@ -54,6 +57,7 @@ class ViewController: UIViewController
     func performOperation(operation: (Double, Double) -> Double) {
         if operandStack.count >= 2 {
             displayValue = operation(operandStack.removeLast(), operandStack.removeLast())
+            userPerformedOperation = true
             enter()
         }
     }
@@ -64,6 +68,7 @@ class ViewController: UIViewController
     func performOperation1(operation: Double -> Double) {
         if operandStack.count >= 1 {
             displayValue = operation(operandStack.removeLast())
+            userPerformedOperation = true
             enter()
         }
     }
@@ -73,6 +78,12 @@ class ViewController: UIViewController
     @IBAction func enter() {
         userIsInTheMiddleOfTypingANumber = false
         operandStack.append(displayValue)
+        var historyStr = "\(displayValue)"
+        if userPerformedOperation {
+            historyStr += " ="
+            userPerformedOperation = false
+        }
+        history.text = historyStr
         println("operandStack = \(operandStack)")
     }
     
@@ -90,6 +101,7 @@ class ViewController: UIViewController
         display.text = "0"
         operandStack.removeAll(keepCapacity: false)
         println("operandStack = \(operandStack)")
+        history.text = historyGreeting
     }
 }
 
