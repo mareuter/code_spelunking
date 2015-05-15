@@ -103,5 +103,15 @@ class ViewController: UIViewController
         println("operandStack = \(operandStack)")
         history.text = historyGreeting
     }
+    
+    @IBAction func backspace() {
+        // Newer version of XCode/Swift has count instead of countElements
+        if count(display.text!) > 1 {
+            display.text = dropLast(display.text!)
+        } else {
+            display.text = "0"
+            userIsInTheMiddleOfTypingANumber = false
+        }
+    }
 }
 
