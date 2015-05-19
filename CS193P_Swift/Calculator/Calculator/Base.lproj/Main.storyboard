@@ -156,9 +156,12 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zaX-oP-QC7">
                                 <rect key="frame" x="16" y="184" width="30" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal">
+                                <state key="normal" title=".">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="appendDigit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p0t-BU-cfh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6iM-8j-p6t">
                                 <rect key="frame" x="92" y="184" width="30" height="30"/>
