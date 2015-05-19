@@ -139,7 +139,7 @@ class Shape: Hashable, Printable {
         shiftBy(0, rows:1)
     }
     
-    final func raiseShapesByOneRow() {
+    final func raiseShapeByOneRow() {
         shiftBy(0, rows: -1)
     }
     

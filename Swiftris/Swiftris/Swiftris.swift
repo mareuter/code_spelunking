@@ -94,7 +94,7 @@ class Swiftris {
         if let shape = fallingShape {
             shape.lowerShapeByOneRow()
             if detectIllegalPlacement() {
-                shape.raiseShapesByOneRow()
+                shape.raiseShapeByOneRow()
                 if detectIllegalPlacement() {
                     endGame()
                 } else {
@@ -174,7 +174,7 @@ class Swiftris {
             while detectIllegalPlacement() == false {
                 shape.lowerShapeByOneRow()
             }
-            shape.raiseShapesByOneRow()
+            shape.raiseShapeByOneRow()
             delegate?.gameShapeDidDrop(self)
         }
     }
