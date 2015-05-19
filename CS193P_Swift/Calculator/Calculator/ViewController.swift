@@ -54,7 +54,12 @@ class ViewController: UIViewController
     @IBAction func operate(sender: UIButton) {
         let operation = sender.currentTitle!
         if userIsInTheMiddleOfTypingANumber {
-            enter()
+            if operation != "±" {
+                enter()
+            } else {
+                displayValue = displayValue * -1
+                return
+            }
         }
         switch operation {
         case "×": performOperation { $0 * $1 }
@@ -64,6 +69,7 @@ class ViewController: UIViewController
         case "√": performOperation1 { sqrt($0) }
         case "sin": performOperation1 { sin($0) }
         case "cos": performOperation1 { cos($0) }
+        case "±": performOperation1 { $0 * -1 }
         default: break
         }
     }
