@@ -29,6 +29,9 @@ class ViewController: UIViewController
 
     @IBAction func addConstant(sender: UIButton) {
         let constant = sender.currentTitle!
+        if userIsInTheMiddleOfTypingANumber {
+            enter()
+        }
         switch constant {
         case "π": getConstant(M_PI)
         default: break
