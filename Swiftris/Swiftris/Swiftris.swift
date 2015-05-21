@@ -2,6 +2,9 @@
 //  Swiftris.swift
 //  Swiftris
 //
+//  Taken from the following blog:
+//  https://www.bloc.io/tutorials/swiftris-build-your-first-ios-game-with-swift#!/chapters/675
+//
 //  Created by Michael Reuter on 4/16/15.
 //  Copyright (c) 2015 Reuter Inc. All rights reserved.
 //
