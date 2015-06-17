@@ -16,6 +16,8 @@ class ViewController: UIViewController
     let historyGreeting = "Welcome to your Calculator"
     var userIsInTheMiddleOfTypingANumber = false
     var userPerformedOperation = false
+    
+    var brain = CalculatorBrain()
 
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
@@ -61,43 +63,23 @@ class ViewController: UIViewController
                 return
             }
         }
-        switch operation {
-        case "×": performOperation { $0 * $1 }
-        case "÷": performOperation { $1 / $0 }
-        case "+": performOperation { $0 + $1 }
-        case "−": performOperation { $1 - $0 }
-        case "√": performOperation1 { sqrt($0) }
-        case "sin": performOperation1 { sin($0) }
-        case "cos": performOperation1 { cos($0) }
-        case "±": performOperation1 { $0 * -1 }
-        default: break
+        if let result = brain.performOperation(operation) {
+            displayValue = result
+        } else {
+            displayValue = 0
         }
+
     }
     
-    func performOperation(operation: (Double, Double) -> Double) {
-        if operandStack.count >= 2 {
-            displayValue = operation(operandStack.removeLast(), operandStack.removeLast())
-            userPerformedOperation = true
-            enter()
-        }
-    }
-    
-    // NOTE: This version XCode and/or Swift cannot overload this and above function with 
-    // different arguments
-    // func performOperation(operation: Double -> Double) {
-    func performOperation1(operation: Double -> Double) {
-        if operandStack.count >= 1 {
-            displayValue = operation(operandStack.removeLast())
-            userPerformedOperation = true
-            enter()
-        }
-    }
-    
-    var operandStack = Array<Double>()
 
     @IBAction func enter() {
         userIsInTheMiddleOfTypingANumber = false
-        operandStack.append(displayValue)
+        if let result = brain.pushOperand(displayValue) {
+            displayValue = result
+        } else {
+            displayValue  = 0
+        }
+        /*
         var historyStr = "\(displayValue)"
         if userPerformedOperation {
             historyStr += " ="
@@ -105,6 +87,7 @@ class ViewController: UIViewController
         }
         history.text = historyStr
         println("operandStack = \(operandStack)")
+        */
     }
     
     var displayValue: Double {
@@ -119,8 +102,7 @@ class ViewController: UIViewController
     
     @IBAction func clear() {
         display.text = "0"
-        operandStack.removeAll(keepCapacity: false)
-        println("operandStack = \(operandStack)")
+        brain.clearStack()
         history.text = historyGreeting
     }
     
