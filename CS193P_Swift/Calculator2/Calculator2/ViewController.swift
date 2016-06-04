@@ -14,11 +14,16 @@ class ViewController: UIViewController
     private var userIsInTheMiddleOfTyping = false
     private let pendingEllipsis = " ..."
     private let equals = " ="
+    private let dot = "."
     
     @IBAction private func touchDigit(sender: UIButton) {
         let digit = sender.currentTitle!
         
-        if userIsInTheMiddleOfTyping {
+        if digit == dot && display.text!.rangeOfString(dot) != nil {
+            return
+        }
+        
+        if userIsInTheMiddleOfTyping || digit == dot {
             let textCurrentlyInDisplay = display.text!
             display.text = textCurrentlyInDisplay + digit
         } else {
@@ -59,6 +64,13 @@ class ViewController: UIViewController
                 history.text = history.text! + equals
             }
         }
+    }
+    
+    @IBAction func clear() {
+        brain.clear()
+        display.text = "0"
+        userIsInTheMiddleOfTyping = false
+        history.text = " "
     }
 }
 

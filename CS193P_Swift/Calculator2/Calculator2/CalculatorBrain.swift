@@ -131,4 +131,10 @@ class CalculatorBrain
             return accumulator
         }
     }
+    
+    func clear() {
+        accumulator = 0.0
+        description = ""
+        pending = nil
+    }
 }
