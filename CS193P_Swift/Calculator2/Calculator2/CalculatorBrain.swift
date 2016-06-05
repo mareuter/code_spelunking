@@ -11,8 +11,9 @@ import Foundation
 class CalculatorBrain
 {
     private var accumulator = 0.0
+    private let descriptionFormatter = NSNumberFormatter()
     
-    var description = ""
+    var description = " "
     private var lastOperand = ""
     
     private let space = " "
@@ -23,11 +24,14 @@ class CalculatorBrain
         }
     }
     
+    private func setupFormatter() {
+        descriptionFormatter.minimumSignificantDigits = 0
+    }
+    
     func setOperand(operand: Double) {
-        print(("In setOperand"))
-        lastOperand = "\(operand)"
+        setupFormatter()
+        lastOperand = descriptionFormatter.stringFromNumber(operand)!
         if isPartialResult {
-            print("In setOperand, isPartialResult")
             description += lastOperand
         } else {
             description = lastOperand
@@ -39,12 +43,14 @@ class CalculatorBrain
     private var operations: Dictionary<String,Operation> = [
         "π": Operation.Constant(M_PI),
         "e": Operation.Constant(M_E),
+        "rnd": Operation.ReturnOperation(drand48),
         "±": Operation.UnaryOperation({ -$0 }),
         "√": Operation.UnaryOperation(sqrt),
         "cos": Operation.UnaryOperation(cos),
         "sin": Operation.UnaryOperation(sin),
         "tan": Operation.UnaryOperation(tan),
         "log": Operation.UnaryOperation(log10),
+        "ln": Operation.UnaryOperation(log),
         "x²": Operation.UnaryOperation({ $0 * $0 }),
         "x⁻¹": Operation.UnaryOperation({ 1.0 / $0 }),
         "×": Operation.BinaryOperation({ $0 * $1 }),
@@ -56,6 +62,7 @@ class CalculatorBrain
     
     private enum Operation {
         case Constant(Double)
+        case ReturnOperation(() -> Double)
         case UnaryOperation((Double) -> Double)
         case BinaryOperation((Double, Double) -> Double)
         case Equals
@@ -65,11 +72,9 @@ class CalculatorBrain
         if let operation = operations[symbol] {
             switch operation {
             case .Constant(let value):
-                print("performOperation: Constant")
                 accumulator = value
                 description += symbol + space
             case .UnaryOperation(let function):
-                print("performOperation: UnaryFunction")
                 var isTrailing = false
                 var unarySymbol = symbol
                 switch unarySymbol {
@@ -100,13 +105,16 @@ class CalculatorBrain
                     }
                 }
                 accumulator = function(accumulator)
+            case .ReturnOperation(let function):
+                let value = function()
+                accumulator = value
+                description += "\(value)" + space
+                break
             case .BinaryOperation(let function):
-                print("performOperation: BinaryFunction")
                 description += space + symbol + space
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
-                case .Equals:
-                print("performOperation: Equals")
+            case .Equals:
                 executePendingBinaryOperation()
             }
         }

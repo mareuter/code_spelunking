@@ -15,6 +15,12 @@ class ViewController: UIViewController
     private let pendingEllipsis = " ..."
     private let equals = " ="
     private let dot = "."
+    private let displayFormatter = NSNumberFormatter()
+    
+    private func setupFormatter() {
+        //displayFormatter.minimumSignificantDigits = 0
+        displayFormatter.maximumFractionDigits = 6
+    }
     
     @IBAction private func touchDigit(sender: UIButton) {
         let digit = sender.currentTitle!
@@ -32,12 +38,12 @@ class ViewController: UIViewController
         userIsInTheMiddleOfTyping = true
     }
 
-    private var displayValue: Double {
+    private var displayValue: Double? {
         get {
             return Double(display.text!)!
         }
         set {
-            display.text = String(newValue)
+            display.text = displayFormatter.stringFromNumber(newValue!)!
         }
     }
     
@@ -48,13 +54,18 @@ class ViewController: UIViewController
     
     @IBAction private func performOperation(sender: UIButton) {
         if userIsInTheMiddleOfTyping {
-            brain.setOperand(displayValue)
-            userIsInTheMiddleOfTyping = false
+            if displayValue != nil {
+                brain.setOperand(displayValue!)
+                userIsInTheMiddleOfTyping = false
+            } else {
+                clearDisplay()
+            }
         }
         
         if let mathematicalSymbol = sender.currentTitle {
             brain.performOperation(mathematicalSymbol)
         }
+        setupFormatter()
         displayValue = brain.result
         if !userIsInTheMiddleOfTyping {
             history.text = brain.description
@@ -66,11 +77,22 @@ class ViewController: UIViewController
         }
     }
     
-    @IBAction func clear() {
-        brain.clear()
+    private func clearDisplay() {
         display.text = "0"
         userIsInTheMiddleOfTyping = false
+    }
+    
+    @IBAction func clear() {
+        brain.clear()
+        clearDisplay()
         history.text = " "
+    }
+    
+    @IBAction func backspace() {
+        display.text!.removeAtIndex(display.text!.endIndex.predecessor())
+        if display.text!.isEmpty {
+            clearDisplay()
+        }
     }
 }
 
