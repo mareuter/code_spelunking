@@ -11,6 +11,8 @@ import Foundation
 class CalculatorBrain
 {
     private var accumulator = 0.0
+    private var internalProgram = [AnyObject]()
+    
     private let descriptionFormatter = NSNumberFormatter()
     
     var description = " "
@@ -29,14 +31,15 @@ class CalculatorBrain
     }
     
     func setOperand(operand: Double) {
+        internalProgram.append(operand)
         setupFormatter()
         lastOperand = descriptionFormatter.stringFromNumber(operand)!
         if isPartialResult {
             description += lastOperand
         } else {
             description = lastOperand
+            
         }
-        
         accumulator = operand
     }
     
@@ -69,6 +72,7 @@ class CalculatorBrain
     }
     
     func performOperation(symbol: String) {
+        internalProgram.append(symbol)
         if let operation = operations[symbol] {
             switch operation {
             case .Constant(let value):
@@ -134,6 +138,27 @@ class CalculatorBrain
         var firstOperand: Double
     }
     
+    typealias PropertyList = AnyObject
+    
+    var program: PropertyList {
+        get {
+            // Value type is copied on return (not pointer)
+            return internalProgram
+        }
+        set {
+            clear()
+            if let arrayOfOps = newValue as? [AnyObject] {
+                for op in arrayOfOps {
+                    if let operand = op as? Double {
+                        setOperand(operand)
+                    } else if let operation = op as? String {
+                        performOperation(operation)
+                    }
+                }
+            }
+        }
+    }
+    
     var result: Double {
         get {
             return accumulator
@@ -144,5 +169,6 @@ class CalculatorBrain
         accumulator = 0.0
         description = ""
         pending = nil
+        internalProgram.removeAll()
     }
 }

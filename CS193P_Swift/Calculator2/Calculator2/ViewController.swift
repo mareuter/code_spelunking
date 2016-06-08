@@ -77,6 +77,19 @@ class ViewController: UIViewController
         }
     }
     
+    var savedProgram: CalculatorBrain.PropertyList?
+    
+    @IBAction func save() {
+        savedProgram = brain.program
+    }
+    
+    @IBAction func restore() {
+        if savedProgram != nil {
+            brain.program = savedProgram!
+            displayValue = brain.result
+        }
+    }
+    
     private func clearDisplay() {
         display.text = "0"
         userIsInTheMiddleOfTyping = false
