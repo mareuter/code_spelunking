@@ -13,6 +13,7 @@
 		A4A9097B1D0A52DF00DC9CA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A909791D0A52DF00DC9CA8 /* LaunchScreen.storyboard */; };
 		A4A909841D0A533E00DC9CA8 /* DemoURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A909831D0A533E00DC9CA8 /* DemoURL.swift */; };
 		A4A909861D0A540F00DC9CA8 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A909851D0A540F00DC9CA8 /* ImageViewController.swift */; };
+		A4A909881D0A5A8900DC9CA8 /* CassiniViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A909871D0A5A8900DC9CA8 /* CassiniViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A4A9097C1D0A52DF00DC9CA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4A909831D0A533E00DC9CA8 /* DemoURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoURL.swift; sourceTree = "<group>"; };
 		A4A909851D0A540F00DC9CA8 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewController.swift; path = ../ImageViewController.swift; sourceTree = "<group>"; };
+		A4A909871D0A5A8900DC9CA8 /* CassiniViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CassiniViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				A4A909831D0A533E00DC9CA8 /* DemoURL.swift */,
 				A4A909851D0A540F00DC9CA8 /* ImageViewController.swift */,
 				A4A909741D0A52DF00DC9CA8 /* Main.storyboard */,
+				A4A909871D0A5A8900DC9CA8 /* CassiniViewController.swift */,
 				A4A9097C1D0A52DF00DC9CA8 /* Info.plist */,
 				A4A909821D0A52EC00DC9CA8 /* Supporting_Files */,
 			);
@@ -149,6 +152,7 @@
 				A4A909711D0A52DF00DC9CA8 /* AppDelegate.swift in Sources */,
 				A4A909861D0A540F00DC9CA8 /* ImageViewController.swift in Sources */,
 				A4A909841D0A533E00DC9CA8 /* DemoURL.swift in Sources */,
+				A4A909881D0A5A8900DC9CA8 /* CassiniViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
