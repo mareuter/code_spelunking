@@ -1,0 +1,54 @@
+exports[`Single snapshots Single snapshot test 1`] = `
+<li
+  className="col l6 s12">
+  <div
+    className="card">
+    <div
+      className="card-image">
+      <img
+        alt="Building an App with ReactJS and MeteorJS"
+        src="https://cdn.lynda.com/course/533228/533228-636179098122239600-16x9.jpg" />
+    </div>
+    <div
+      className="card-content">
+      <span
+        className="card-title">
+        Building an App with ReactJS and MeteorJS
+      </span>
+      <p>
+        Meteor and React are a powerhouse combination. Meteor gives you a fast, easy-to-use solution for data management across clients and servers, and React gives you a way to structure your app\'s UI from reusable components. The combination allows you to create your dream apps: dynamic, data driven, and cross-platform.
+      </p>
+      <div
+        className="row">
+        <div
+          className="col l6 center">
+          <blockquote>
+            <h5>
+              Released: 
+              12/21/2016
+            </h5>
+          </blockquote>
+        </div>
+        <div
+          className="col l6 center">
+          <blockquote>
+            <h5>
+              Views: 
+              31,266
+            </h5>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+    <div
+      className="card-action">
+      <a
+        href="https://www.lynda.com/React-js-tutorials/Building-App-React-js-MeteorJS/533228-2.html"
+        target="_blank">
+        Link to course
+      </a>
+    </div>
+  </div>
+  <br />
+</li>
+`;
